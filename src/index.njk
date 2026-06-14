@@ -1,0 +1,154 @@
+---
+layout: base.njk
+---
+<header class="nav">
+  <a class="nav__brand" href="#top">{{ site.shortName }}</a>
+  <nav class="nav__links">
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#words">Praise</a>
+    <a href="#connect" class="nav__cta">{{ site.ctaLabel }}</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="--hero-image: url('{{ site.heroImage | url }}')">
+    <div class="hero__inner">
+      <p class="eyebrow">{{ site.role }}</p>
+      <h1 class="hero__name">{{ site.name }}</h1>
+      <p class="hero__tagline">{{ site.tagline }}</p>
+      <p class="hero__subhead">{{ site.subhead }}</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>
+        <a class="btn btn--ghost" href="#work">See the work</a>
+      </div>
+      {% if site.awards.length %}
+      <ul class="hero__awards">
+        {% for a in site.awards %}<li>{{ a }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- FEATURED WORK -->
+  <section id="work" class="section">
+    <div class="section__head">
+      <h2>Featured work</h2>
+      <p class="section__sub">Original scores for film, documentary, and brand work.</p>
+    </div>
+    <div class="work-grid">
+      {% for item in featured.items %}
+      <figure class="work {% if item.highlight %}work--lead{% endif %}">
+        <div class="work__video">
+          <iframe
+            src="{{ item.video | embedUrl }}"
+            title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <figcaption class="work__caption">
+          <span class="work__title">{{ item.title }}</span>
+          {% if item.client %}<span class="work__client">{{ item.client }}</span>{% endif %}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients" class="section section--tight">
+    <div class="section__head">
+      <h2>Select clients</h2>
+    </div>
+    <ul class="clients">
+      {% for c in clients.items %}
+      <li class="client">
+        {% if c.logo %}
+          <img src="{{ c.logo | url }}" alt="{{ c.name }} logo" loading="lazy">
+        {% else %}
+          <span class="client__name">{{ c.name }}</span>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="section__head">
+      <h2>What I do</h2>
+      <p class="section__sub">From the first idea to the final mix.</p>
+    </div>
+    <div class="services">
+      {% for s in services.items %}
+      <div class="service">
+        <h3 class="service__title">{{ s.title }}</h3>
+        <p class="service__desc">{{ s.desc }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="words" class="section section--dark">
+    <div class="section__head">
+      <h2>In their words</h2>
+    </div>
+    <div class="quotes">
+      {% for t in testimonials.items %}
+      <blockquote class="quote">
+        <p class="quote__text">{{ t.quote }}</p>
+        <footer class="quote__by">
+          <span class="quote__name">{{ t.name }}</span>
+          {% if t.role %}<span class="quote__role">{{ t.role }}</span>{% endif %}
+        </footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- MUSIC / RELEASES (optional links) -->
+  {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
+  <section id="music" class="section section--tight">
+    <div class="section__head">
+      <h2>Music</h2>
+    </div>
+    <div class="hero__actions" style="justify-content:center">
+      {% if site.vinylPreorderUrl %}<a class="btn btn--primary" href="{{ site.vinylPreorderUrl }}">Preorder the vinyl</a>{% endif %}
+      {% if site.spotify %}<a class="btn btn--ghost" href="{{ site.spotify }}">Spotify</a>{% endif %}
+      {% if site.appleMusic %}<a class="btn btn--ghost" href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- CONNECT -->
+  <section id="connect" class="section section--dark">
+    <div class="section__head">
+      <h2>Let's connect</h2>
+      <p class="section__sub">Tell me about your project, film, or record.</p>
+    </div>
+    <form class="contact" action="{{ site.formspreeEndpoint }}" method="POST">
+      <div class="contact__row">
+        <label>Name<input type="text" name="name" required></label>
+        <label>Email<input type="email" name="email" required></label>
+      </div>
+      <label>Project<input type="text" name="project" placeholder="Film score, record, commercial…"></label>
+      <label>Message<textarea name="message" rows="5" required></textarea></label>
+      <button class="btn btn--primary" type="submit">Send</button>
+    </form>
+    <div class="contact__direct">
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <a href="tel:{{ site.phoneHref }}">{{ site.phone }}</a>
+      {% if site.instagram %}<a href="{{ site.instagram }}">Instagram</a>{% endif %}
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; {% year %} {{ site.name }}. All rights reserved.</p>
+</footer>

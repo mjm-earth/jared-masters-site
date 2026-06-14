@@ -1,0 +1,15 @@
+{
+  "name": "jared-masters-site",
+  "version": "1.0.0",
+  "description": "Website for Jared Alexander Masters — composer, producer, mixer. Static site (Eleventy) hosted on GitHub Pages, content editable via Sveltia CMS.",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "eleventy --serve",
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

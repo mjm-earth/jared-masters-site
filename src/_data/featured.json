@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "title": "The North Face Presents: Earthside",
+      "client": "The North Face",
+      "blurb": "Original score for The North Face's Earthside film.",
+      "video": "https://www.youtube.com/embed/6zl4yU-I8tI",
+      "highlight": true
+    },
+    {
+      "title": "The Meaningless Pursuit of Snow",
+      "client": "Patagonia Films",
+      "blurb": "Score for the Patagonia Films documentary.",
+      "video": "https://www.youtube.com/embed/qnIbv6TTxOM",
+      "highlight": false
+    },
+    {
+      "title": "Journey to 100",
+      "client": "Athletic Brewing",
+      "blurb": "Film by Athletic Brewing.",
+      "video": "https://www.youtube.com/embed/GMg5bMtixPs",
+      "highlight": false
+    },
+    {
+      "title": "Subaru & Brooklyn Bell",
+      "client": "Subaru",
+      "blurb": "Brand film featuring artist Brooklyn Bell.",
+      "video": "https://player.vimeo.com/video/545656933",
+      "highlight": false
+    },
+    {
+      "title": "La Sportiva Brand Anthem",
+      "client": "La Sportiva",
+      "blurb": "Brand anthem score.",
+      "video": "https://www.youtube.com/embed/cpg0qRbFPxU",
+      "highlight": false
+    },
+    {
+      "title": "Crossing Tasmania",
+      "client": "",
+      "blurb": "Original score for the adventure documentary.",
+      "video": "https://www.youtube.com/embed/eqI-hKkUoKw",
+      "highlight": false
+    },
+    {
+      "title": "Define Your Future",
+      "client": "",
+      "blurb": "Commercial score.",
+      "video": "https://www.youtube.com/embed/eODWunbgVT4",
+      "highlight": false
+    },
+    {
+      "title": "Go There Vol. III — Elan Hagens",
+      "client": "",
+      "blurb": "Film score for the Go There series.",
+      "video": "https://www.youtube.com/embed/4G-z-2sFo3M",
+      "highlight": false
+    }
+  ]
+}

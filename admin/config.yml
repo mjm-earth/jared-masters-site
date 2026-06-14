@@ -1,0 +1,123 @@
+# Sveltia CMS configuration.
+# This maps the friendly editor forms (at /admin) to the content files the site is built from.
+# Setup notes are in README.md — fill in `repo` and the OAuth `base_url` before going live.
+
+backend:
+  name: github
+  repo: mjm-earth/jared-masters-site
+  branch: main
+  # GitHub Pages has no built-in login, so Sveltia uses a tiny free auth relay.
+  # After deploying the sveltia-cms-auth Cloudflare Worker (see README), put its URL here:
+  base_url: https://YOUR-AUTH-WORKER.workers.dev
+
+# Where uploaded images go, and how they're referenced on the site.
+media_folder: "src/assets/images/uploads"
+public_folder: "/assets/images/uploads"
+
+collections:
+  # ---- 1. Site settings: the pitch, contact info, links ----
+  - name: settings
+    label: "Site settings"
+    delete: false
+    editor: { preview: false }
+    files:
+      - name: site
+        label: "Pitch, contact & links"
+        file: "src/_data/site.json"
+        fields:
+          - { name: name, label: "Full name", widget: string }
+          - { name: shortName, label: "Short name (nav)", widget: string }
+          - { name: role, label: "Role line (e.g. Composer · Producer · Mixer)", widget: string }
+          - { name: tagline, label: "Headline / pitch", widget: text, hint: "The one big sentence at the top of the page." }
+          - { name: subhead, label: "Sub-headline", widget: text }
+          - { name: ctaLabel, label: "Button text", widget: string }
+          - { name: metaDescription, label: "Search/AI description (1–2 sentences)", widget: text }
+          - { name: email, label: "Email", widget: string }
+          - { name: phone, label: "Phone (display)", widget: string }
+          - { name: phoneHref, label: "Phone (dial format, e.g. +15412180471)", widget: string }
+          - { name: instagram, label: "Instagram URL", widget: string, required: false }
+          - { name: spotify, label: "Spotify URL", widget: string, required: false }
+          - { name: appleMusic, label: "Apple Music URL", widget: string, required: false }
+          - { name: youtube, label: "YouTube URL", widget: string, required: false }
+          - { name: vinylPreorderUrl, label: "Vinyl preorder URL", widget: string, required: false }
+          - { name: formspreeEndpoint, label: "Formspree form endpoint", widget: string }
+          - { name: heroImage, label: "Hero background image", widget: image }
+          - { name: ogImage, label: "Social share image", widget: image }
+          - { name: url, label: "Site URL", widget: string, hint: "e.g. https://username.github.io" }
+          - name: awards
+            label: "Awards / selections"
+            widget: list
+            field: { name: text, label: "Award", widget: string }
+
+  # ---- 2. Featured work (videos) ----
+  - name: featured
+    label: "Featured work"
+    label_singular: "video"
+    files:
+      - name: featured
+        label: "Featured videos"
+        file: "src/_data/featured.json"
+        fields:
+          - name: items
+            label: "Videos"
+            widget: list
+            label_singular: "Video"
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: client, label: "Client (optional)", widget: string, required: false }
+              - { name: blurb, label: "Short description", widget: text, required: false }
+              - { name: video, label: "YouTube or Vimeo URL", widget: string }
+              - { name: highlight, label: "Feature large at top?", widget: boolean, default: false }
+
+  # ---- 3. Clients ----
+  - name: clients
+    label: "Clients"
+    files:
+      - name: clients
+        label: "Client list"
+        file: "src/_data/clients.json"
+        fields:
+          - name: items
+            label: "Clients"
+            widget: list
+            label_singular: "Client"
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: logo, label: "Logo (optional — shows name if empty)", widget: image, required: false }
+
+  # ---- 4. Testimonials ----
+  - name: testimonials
+    label: "Testimonials"
+    files:
+      - name: testimonials
+        label: "Testimonials"
+        file: "src/_data/testimonials.json"
+        fields:
+          - name: items
+            label: "Quotes"
+            widget: list
+            label_singular: "Quote"
+            summary: "{{fields.name}}"
+            fields:
+              - { name: quote, label: "Quote", widget: text }
+              - { name: name, label: "Name", widget: string }
+              - { name: role, label: "Role / company", widget: string, required: false }
+
+  # ---- 5. Services ----
+  - name: services
+    label: "Services"
+    files:
+      - name: services
+        label: "What I do"
+        file: "src/_data/services.json"
+        fields:
+          - name: items
+            label: "Services"
+            widget: list
+            label_singular: "Service"
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Title", widget: string }
+              - { name: desc, label: "Description", widget: text }

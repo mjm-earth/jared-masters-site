@@ -1,0 +1,23 @@
+# Allow everything, including AI/answer-engine crawlers so Jared's work is discoverable & citable.
+User-agent: *
+Allow: /
+
+# Explicitly welcome major AI crawlers
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://mjm-earth.github.io/jared-masters-site/sitemap.xml

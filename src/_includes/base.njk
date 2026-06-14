@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ title or (site.name + " — " + site.role) }}</title>
+  <meta name="description" content="{{ site.metaDescription }}">
+  <link rel="canonical" href="{{ site.url }}/">
+  <meta name="author" content="{{ site.name }}">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{{ site.name }} — {{ site.role }}">
+  <meta property="og:description" content="{{ site.metaDescription }}">
+  <meta property="og:url" content="{{ site.url }}/">
+  <meta property="og:image" content="{{ site.url }}{{ site.ogImage }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ site.name }} — {{ site.role }}">
+  <meta name="twitter:description" content="{{ site.metaDescription }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.ogImage }}">
+
+  <!-- Fonts: Archivo (wide grotesque headings) + Courier Prime (mono body) — free Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+
+  <!-- Structured data: who Jared is (helps Google + AI assistants cite him accurately) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}/",
+    "jobTitle": "Composer, Producer, Mixer",
+    "description": "{{ site.metaDescription }}",
+    "email": "mailto:{{ site.email }}",
+    "knowsAbout": ["Film scoring", "Music production", "Songwriting", "Mixing", "Original score", "Commercial music"],
+    "sameAs": [
+      {% if site.instagram %}"{{ site.instagram }}"{% endif %}
+      {%- if site.spotify %}, "{{ site.spotify }}"{% endif %}
+      {%- if site.appleMusic %}, "{{ site.appleMusic }}"{% endif %}
+      {%- if site.youtube %}, "{{ site.youtube }}"{% endif %}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{ site.name }} — Music for Film, Brands & Artists",
+    "description": "Original scores and music production for film, commercials, and recording artists.",
+    "url": "{{ site.url }}/",
+    "image": "{{ site.url }}{{ site.ogImage }}",
+    "telephone": "{{ site.phoneHref }}",
+    "email": "{{ site.email }}",
+    "founder": { "@type": "Person", "name": "{{ site.name }}" },
+    "review": [
+      {%- for t in testimonials.items %}
+      {
+        "@type": "Review",
+        "reviewBody": {{ t.quote | dump | safe }},
+        "author": { "@type": "Person", "name": "{{ t.name }}" }
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+  </script>
+</head>
+<body>
+  {{ content | safe }}
+</body>
+</html>

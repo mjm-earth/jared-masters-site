@@ -1,0 +1,52 @@
+name: Build & deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish; queue the newest commit.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      # User/Org pages (<name>.github.io) and custom domains serve at root → prefix "/".
+      # Project pages (<name>.github.io/<repo>/) need the repo name as the prefix.
+      - name: Compute path prefix
+        id: prefix
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY%%/*}"
+          if [ -f src/static/CNAME ] || [ "$repo" = "${owner}.github.io" ]; then
+            echo "PATH_PREFIX=/" >> "$GITHUB_ENV"
+          else
+            echo "PATH_PREFIX=/${repo}/" >> "$GITHUB_ENV"
+          fi
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
