@@ -132,6 +132,7 @@ layout: base.njk
       <p class="section__sub">Tell me about your project, film, or record.</p>
     </div>
     <form class="contact" action="{{ site.formspreeEndpoint }}" method="POST">
+      <input type="hidden" name="_subject" value="New project inquiry from {{ site.shortName }} site">
       <div class="contact__row">
         <label>Name<input type="text" name="name" required></label>
         <label>Email<input type="email" name="email" required></label>
