@@ -113,11 +113,11 @@ layout: base.njk
       <h2>Press play</h2>
       <p class="section__sub">Every piece here is an original score, composed to picture.</p>
     </div>
-    <div class="work-grid">
+    <div class="work-grid" data-work-grid>
       {% for item in featured.items %}
       {% if not loop.first %}
       {% set iv = item.video | videoMeta %}
-      <figure class="work reveal" style="--i: {{ loop.index0 }}">
+      <figure class="work reveal{% if loop.index0 > 4 %} work--more{% endif %}" style="--i: {{ loop.index0 }}">
         <div class="work__video facade" role="button" tabindex="0"
              data-src="{{ iv.play }}" data-title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
              aria-label="Play {{ item.title }}">
@@ -132,6 +132,11 @@ layout: base.njk
       {% endif %}
       {% endfor %}
     </div>
+    {% if featured.items.length > 5 %}
+    <div class="work-more reveal">
+      <button class="btn btn--ghost" type="button" data-show-more aria-expanded="false">Show more work</button>
+    </div>
+    {% endif %}
   </section>
 
   <!-- SERVICES -->

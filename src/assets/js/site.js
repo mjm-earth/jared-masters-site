@@ -62,6 +62,20 @@
     if (next) next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
   });
 
+  /* ---------- 2c) Show more work ---------- */
+  var moreBtn = document.querySelector("[data-show-more]");
+  var workGrid = document.querySelector("[data-work-grid]");
+  if (moreBtn && workGrid) {
+    moreBtn.addEventListener("click", function () {
+      var expanded = workGrid.classList.toggle("is-expanded");
+      moreBtn.setAttribute("aria-expanded", expanded ? "true" : "false");
+      moreBtn.textContent = expanded ? "Show less" : "Show more work";
+      if (expanded) {
+        [].slice.call(workGrid.querySelectorAll(".work--more")).forEach(function (el) { el.classList.add("in"); });
+      }
+    });
+  }
+
   /* ---------- 3) Hero background video ---------- */
   var heroBg = document.querySelector(".hero__bg");
   if (heroBg) {

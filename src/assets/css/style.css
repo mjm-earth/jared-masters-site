@@ -199,6 +199,8 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; text-transform: up
 .work__caption { display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; align-items: baseline; padding: 0.9rem 0.1rem 0; }
 .work__title { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.82rem; font-weight: 600; }
 .work__client { color: var(--ink-dim); font-size: 0.78rem; }
+.work-grid:not(.is-expanded) .work--more { display: none; }
+.work-more { display: flex; justify-content: center; margin-top: 2.2rem; }
 
 /* ---------- Services ---------- */
 .services { display: grid; gap: 1.1rem; grid-template-columns: 1fr; }
