@@ -81,7 +81,9 @@ layout: base.njk
     <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
     <ul class="clients">
       {% for c in clients.items %}
-      <li class="client"><span class="client__name">{{ c.name }}</span></li>
+      <li class="client">
+        {%- if c.logo %}<img class="client__logo" src="{{ c.logo | url }}" alt="{{ c.name }}" loading="lazy">{% else %}<span class="client__name">{{ c.name }}</span>{% endif -%}
+      </li>
       {% endfor %}
     </ul>
   </section>
@@ -106,37 +108,50 @@ layout: base.njk
   </section>
   {% endif %}
 
-  <!-- SELECTED WORK -->
+  <!-- SELECTED WORK (case-study slideshow) -->
   <section id="work" class="section">
-    <div class="section__head reveal">
-      <p class="eyebrow">Selected work</p>
-      <h2>Press play</h2>
-      <p class="section__sub">Every piece here is an original score, composed to picture.</p>
-    </div>
-    <div class="work-grid" data-work-grid>
-      {% for item in featured.items %}
-      {% if not loop.first %}
-      {% set iv = item.video | videoMeta %}
-      <figure class="work reveal{% if loop.index0 > 4 %} work--more{% endif %}" style="--i: {{ loop.index0 }}">
-        <div class="work__video facade" role="button" tabindex="0"
-             data-src="{{ iv.play }}" data-title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
-             aria-label="Play {{ item.title }}">
-          {% if iv.poster %}<img class="facade__poster" src="{{ iv.poster }}" alt="{{ item.title }}" loading="lazy">{% endif %}
-          <span class="facade__play" aria-hidden="true"></span>
+    <div class="carousel reveal" data-carousel>
+      <div class="section__head section__head--row">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2>Case studies</h2>
         </div>
-        <figcaption class="work__caption">
-          <span class="work__title">{{ item.title }}</span>
-          {% if item.client %}<span class="work__client">{{ item.client }}</span>{% endif %}
-        </figcaption>
-      </figure>
-      {% endif %}
-      {% endfor %}
+        <div class="carousel__nav-group">
+          <button class="carousel__nav carousel__nav--prev" type="button" aria-label="Previous">‹</button>
+          <button class="carousel__nav carousel__nav--next" type="button" aria-label="Next">›</button>
+        </div>
+      </div>
+      <ul class="carousel__track" data-carousel-track>
+        {% for item in featured.items %}{% if not loop.first %}
+        {% set iv = item.video | videoMeta %}
+        <li class="carousel__item caseslide">
+          <div class="case__grid">
+            <div class="case__media">
+              <div class="case__video facade" role="button" tabindex="0"
+                   data-src="{{ iv.play }}" data-title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
+                   aria-label="Play {{ item.title }}">
+                {% if iv.poster %}<img class="facade__poster" src="{{ iv.poster }}" alt="{{ item.title }}" loading="lazy">{% endif %}
+                <span class="facade__play" aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="case__text">
+              {% if item.client %}<p class="eyebrow">{{ item.client }}</p>{% endif %}
+              <h3 class="caseslide__title">{{ item.title }}</h3>
+              <dl class="case__blocks">
+                {% if item.blocks %}
+                  {% for b in item.blocks %}
+                  <div class="case__block"><dt>{{ b.label }}</dt><dd>{{ b.text }}</dd></div>
+                  {% endfor %}
+                {% elif item.blurb %}
+                  <div class="case__block"><dt>The work</dt><dd>{{ item.blurb }}</dd></div>
+                {% endif %}
+              </dl>
+            </div>
+          </div>
+        </li>
+        {% endif %}{% endfor %}
+      </ul>
     </div>
-    {% if featured.items.length > 5 %}
-    <div class="work-more reveal">
-      <button class="btn btn--ghost" type="button" data-show-more aria-expanded="false">Show more work</button>
-    </div>
-    {% endif %}
   </section>
 
   <!-- SERVICES -->
@@ -157,6 +172,23 @@ layout: base.njk
       </div>
       {% endfor %}
     </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="process" class="section">
+    <div class="section__head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Simple, from first call to final mix.</h2>
+    </div>
+    <ol class="process">
+      {% for p in process.items %}
+      <li class="process__step reveal" style="--i: {{ loop.index0 }}">
+        <span class="process__num">{{ p.step }}</span>
+        <h3 class="process__title">{{ p.title }}</h3>
+        <p class="process__desc">{{ p.desc }}</p>
+      </li>
+      {% endfor %}
+    </ol>
   </section>
 
   <!-- ABOUT (+ also a musician) -->
@@ -220,12 +252,30 @@ layout: base.njk
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" class="section section--dark">
+    <div class="section__head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      {% for f in faq.items %}
+      <details class="faq__item reveal">
+        <summary class="faq__q">{{ f.q }}</summary>
+        <p class="faq__a">{{ f.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+
   <!-- CONNECT -->
+  {% set bookHref = site.bookingUrl or ("mailto:" + site.email + "?subject=Book%20a%20call") %}
   <section id="connect" class="section connect">
     <div class="section__head reveal">
       {% if site.availability %}<p class="eyebrow">{{ site.availability }}</p>{% endif %}
       <h2>Start a project</h2>
       <p class="section__sub">Tell me about your film, brand, or record. I read every message and reply personally.</p>
+      <p class="connect__book">Prefer to talk first? <a class="btn btn--ghost btn--sm" href="{{ bookHref }}">Book a call</a></p>
     </div>
     <form class="contact reveal" id="contact-form" action="mailto:{{ site.email }}" method="POST" enctype="text/plain">
       <div class="contact__row">

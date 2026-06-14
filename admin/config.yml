@@ -44,6 +44,7 @@ collections:
           - { name: youtube, label: "YouTube URL", widget: string, required: false }
           - { name: vinylPreorderUrl, label: "Vinyl preorder URL", widget: string, required: false }
           - { name: vinylBlurb, label: "Album / vinyl description", widget: text, required: false }
+          - { name: bookingUrl, label: "Book-a-call link (Calendly, etc.)", widget: string, required: false, hint: "Leave blank to fall back to email." }
           - { name: heroVideo, label: "Hero background video (YouTube/Vimeo URL)", widget: string, required: false, hint: "Plays silently behind the hero. Vimeo works best." }
           - { name: portraitImage, label: "About photo (of Jared)", widget: image, required: false }
           - { name: ogImage, label: "Social share image", widget: image }
@@ -71,9 +72,18 @@ collections:
             fields:
               - { name: title, label: "Title", widget: string }
               - { name: client, label: "Client (optional)", widget: string, required: false }
-              - { name: blurb, label: "Short description", widget: text, required: false }
+              - { name: blurb, label: "Short description (used if no case-study sections)", widget: text, required: false }
               - { name: video, label: "YouTube or Vimeo URL", widget: string }
               - { name: highlight, label: "Feature large at top?", widget: boolean, default: false }
+              - name: blocks
+                label: "Case-study sections (Brief / What I did / Result)"
+                widget: list
+                required: false
+                label_singular: "Section"
+                summary: "{{fields.label}}"
+                fields:
+                  - { name: label, label: "Label", widget: string }
+                  - { name: text, label: "Text", widget: text }
 
   # ---- 3. Clients ----
   - name: clients
@@ -127,4 +137,40 @@ collections:
             fields:
               - { name: title, label: "Title", widget: string }
               - { name: icon, label: "Icon", widget: select, required: false, options: ["score", "mix", "production", "songwriting"] }
+              - { name: minimized, label: "Show as a small secondary card?", widget: boolean, default: false, required: false }
               - { name: desc, label: "Description", widget: text }
+
+  # ---- 6. How it works ----
+  - name: process
+    label: "How it works"
+    files:
+      - name: process
+        label: "Process steps"
+        file: "src/_data/process.json"
+        fields:
+          - name: items
+            label: "Steps"
+            widget: list
+            label_singular: "Step"
+            summary: "{{fields.title}}"
+            fields:
+              - { name: step, label: "Number (e.g. 01)", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: desc, label: "Description", widget: text }
+
+  # ---- 7. FAQ ----
+  - name: faq
+    label: "FAQ"
+    files:
+      - name: faq
+        label: "Questions"
+        file: "src/_data/faq.json"
+        fields:
+          - name: items
+            label: "Questions"
+            widget: list
+            label_singular: "Question"
+            summary: "{{fields.q}}"
+            fields:
+              - { name: q, label: "Question", widget: string }
+              - { name: a, label: "Answer", widget: text }

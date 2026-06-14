@@ -12,7 +12,12 @@
       "client": "Ford",
       "blurb": "Additional production: real instruments and an Americana influence for the all-new Ford Bronco by Filson reveal.",
       "video": "https://www.youtube.com/embed/8Cnti-CFPsg",
-      "highlight": false
+      "highlight": false,
+      "blocks": [
+        { "label": "The brief", "text": "Original music for the all-new Ford Bronco by Filson reveal." },
+        { "label": "What I did", "text": "Added live instruments and production to the score, with an Americana influence to match the Bronco x Filson world." },
+        { "label": "The result", "text": "A rugged, American sound built around real instrumentation, delivered for the reveal." }
+      ]
     },
     {
       "title": "ANNA",
