@@ -76,6 +76,16 @@ layout: base.njk
     <a class="hero__scroll" href="#reel" aria-label="Scroll to reel">▾</a>
   </section>
 
+  <!-- TRUSTED BY (all-text clients) -->
+  <section id="clients" class="trusted reveal">
+    <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
+    <ul class="clients">
+      {% for c in clients.items %}
+      <li class="client"><span class="client__name">{{ c.name }}</span></li>
+      {% endfor %}
+    </ul>
+  </section>
+
   <!-- FEATURED REEL -->
   {% set reel = featured.items[0] %}
   {% if reel %}
@@ -95,16 +105,6 @@ layout: base.njk
     </div>
   </section>
   {% endif %}
-
-  <!-- TRUSTED BY (all-text clients) -->
-  <section id="clients" class="trusted reveal">
-    <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
-    <ul class="clients">
-      {% for c in clients.items %}
-      <li class="client"><span class="client__name">{{ c.name }}</span></li>
-      {% endfor %}
-    </ul>
-  </section>
 
   <!-- SELECTED WORK -->
   <section id="work" class="section">
