@@ -148,10 +148,12 @@ layout: base.njk
     </div>
     <div class="services">
       {% for s in services.items %}
-      <div class="service reveal">
+      <div class="service reveal{% if s.minimized %} service--min{% endif %}">
         {{ svcIcon(s.icon) }}
-        <h3 class="service__title">{{ s.title }}</h3>
-        <p class="service__desc">{{ s.desc }}</p>
+        <div class="service__body">
+          <h3 class="service__title">{{ s.title }}</h3>
+          <p class="service__desc">{{ s.desc }}</p>
+        </div>
       </div>
       {% endfor %}
     </div>
