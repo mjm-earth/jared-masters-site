@@ -1,11 +1,11 @@
 {
   "items": [
     { "name": "The North Face", "logo": "" },
-    { "name": "Ford", "logo": "" },
     { "name": "Patagonia", "logo": "" },
+    { "name": "Ford", "logo": "" },
     { "name": "Subaru", "logo": "" },
+    { "name": "Filson", "logo": "" },
     { "name": "Athletic Brewing", "logo": "" },
-    { "name": "La Sportiva", "logo": "" },
-    { "name": "311", "logo": "" }
+    { "name": "La Sportiva", "logo": "" }
   ]
 }
