@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>{{ title or (site.name + " — " + site.role) }}</title>
+  <title>{{ title or (site.name + " · " + site.role) }}</title>
   <meta name="description" content="{{ site.metaDescription }}">
   <link rel="canonical" href="{{ site.url }}/">
   <meta name="author" content="{{ site.name }}">
@@ -16,12 +16,12 @@
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="{{ site.name }}">
-  <meta property="og:title" content="{{ site.name }} — {{ site.role }}">
+  <meta property="og:title" content="{{ site.name }} · {{ site.role }}">
   <meta property="og:description" content="{{ site.metaDescription }}">
   <meta property="og:url" content="{{ site.url }}/">
   <meta property="og:image" content="{{ site.url }}{{ site.ogImage }}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ site.name }} — {{ site.role }}">
+  <meta name="twitter:title" content="{{ site.name }} · {{ site.role }}">
   <meta name="twitter:description" content="{{ site.metaDescription }}">
   <meta name="twitter:image" content="{{ site.url }}{{ site.ogImage }}">
 

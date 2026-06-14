@@ -170,7 +170,7 @@ layout: base.njk
         <p>{{ site.bio }}</p>
         {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
         <div class="about__music">
-          <p class="about__music-label">He's also a recording artist.</p>
+          <p class="about__music-label">I'm also a recording artist.</p>
           {% if site.vinylBlurb %}<p class="about__music-blurb">{{ site.vinylBlurb }}</p>{% endif %}
           <div class="about__links">
             {% if site.vinylPreorderUrl %}<a class="btn btn--ghost btn--sm" href="{{ site.vinylPreorderUrl }}">Vinyl</a>{% endif %}
@@ -268,7 +268,7 @@ layout: base.njk
 </main>
 
 <footer class="footer">
-  <p class="footer__bio">{{ site.bio }}</p>
+  <p class="footer__bio">{{ site.tagline }} {{ site.role }}.</p>
   <div class="footer__links">
     <a href="mailto:{{ site.email }}">Email</a>
     {% if site.instagram %}<a href="{{ site.instagram }}">Instagram</a>{% endif %}

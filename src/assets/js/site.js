@@ -60,6 +60,14 @@
     }
     if (prev) prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
     if (next) next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+    var group = car.querySelector(".carousel__nav-group");
+    function syncNav() {
+      if (!group) return;
+      var overflowing = track.scrollWidth > track.clientWidth + 2;
+      group.style.visibility = overflowing ? "" : "hidden";
+    }
+    syncNav();
+    window.addEventListener("resize", syncNav);
   });
 
   /* ---------- 2c) Show more work ---------- */
