@@ -216,15 +216,8 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; text-transform: up
 .service__title { font-size: 1.04rem; margin: 0 0 0.5rem; }
 .service__desc { color: var(--ink-dim); margin: 0; font-size: var(--fs-small); line-height: 1.55; }
 
-/* Minimized service — compact, secondary */
-.service--min { display: flex; align-items: center; gap: 1.1rem; padding: 1.2rem 1.5rem; }
-.service--min .service__icon { width: 22px; height: 22px; margin: 0; }
-.service--min .service__title { font-size: 0.92rem; margin: 0 0 0.2rem; }
-.service--min .service__desc { font-size: 0.84rem; line-height: 1.45; }
-/* Primary (non-minimized) leads, full width; minimized cards sit two-up below */
-@media (min-width: 560px) {
-  .service:not(.service--min) { grid-column: 1 / -1; }
-}
+/* Services: equal 3-column cards */
+@media (min-width: 720px) { .services { grid-template-columns: repeat(3, 1fr); } }
 
 /* ---------- Case study ---------- */
 .case__grid { max-width: var(--maxw); margin: 0 auto; display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
@@ -334,7 +327,6 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; text-transform: up
   .contact__row { grid-template-columns: 1fr 1fr; }
   .contact button { justify-self: start; padding-inline: 2.2rem; }
   .work-grid { grid-template-columns: repeat(2, 1fr); }
-  .services { grid-template-columns: repeat(2, 1fr); }
   .quote { flex-basis: 46%; }
   .hero__actions .btn { flex: 0 0 auto; }
   .contact__direct { flex-direction: row; flex-wrap: wrap; gap: 1.8rem; }

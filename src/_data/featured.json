@@ -12,9 +12,9 @@
       "client": "Ford",
       "video": "https://www.youtube.com/embed/8Cnti-CFPsg",
       "blocks": [
-        { "label": "The brief", "text": "Original music for the all-new Ford Bronco by Filson reveal." },
-        { "label": "What I did", "text": "Added live instruments and production to the score, with an Americana influence to match the Bronco x Filson world." },
-        { "label": "The result", "text": "A rugged, American sound built around real instrumentation, delivered for the reveal." }
+        { "label": "The brief", "text": "The reveal film for the First Edition Ford Bronco x Filson, a premium 4x4 built around American craftsmanship and the backcountry." },
+        { "label": "What I did", "text": "Added live instruments and production to the score, weaving an Americana influence to match the Bronco x Filson world." },
+        { "label": "The result", "text": "A rugged, handmade-feeling sound for a flagship brand collaboration." }
       ]
     },
     {
@@ -22,9 +22,9 @@
       "client": "Subaru",
       "video": "https://player.vimeo.com/video/545656933",
       "blocks": [
-        { "label": "The brief", "text": "Music for Subaru's brand film featuring artist Brooklyn Bell." },
-        { "label": "What I did", "text": "Scored to picture, supporting Brooklyn Bell's story without getting in its way." },
-        { "label": "The result", "text": "An original score for a Subaru brand film." }
+        { "label": "The brief", "text": "A Subaru brand film following artist and adventurer Brooklyn Bell." },
+        { "label": "What I did", "text": "Scored the film to picture, carrying Brooklyn's story without crowding it." },
+        { "label": "The result", "text": "An original score for a national Subaru brand film." }
       ]
     },
     {
@@ -32,9 +32,9 @@
       "client": "Athletic Brewing",
       "video": "https://www.youtube.com/embed/GMg5bMtixPs",
       "blocks": [
-        { "label": "The brief", "text": "Original score for Athletic Brewing's Journey to 100 film." },
-        { "label": "What I did", "text": "Wrote music to carry the film's emotional arc and match the brand's spirit." },
-        { "label": "The result", "text": "A score that fit Athletic Brewing's story start to finish." }
+        { "label": "The brief", "text": "Athletic Brewing's first-ever documentary: Jason Hardrath's mission to summit 100 peaks faster than anyone, made with WZRD Media." },
+        { "label": "What I did", "text": "Composed the original score, tracking the highs and the grind of a record-setting endurance journey." },
+        { "label": "The result", "text": "A feature documentary score for Athletic Brewing's debut film." }
       ]
     },
     {
@@ -42,9 +42,29 @@
       "client": "La Sportiva",
       "video": "https://www.youtube.com/embed/cpg0qRbFPxU",
       "blocks": [
-        { "label": "The brief", "text": "A brand anthem for La Sportiva." },
-        { "label": "What I did", "text": "Composed an original anthem to match the energy of the brand." },
-        { "label": "The result", "text": "A signature piece for La Sportiva's brand film." }
+        { "label": "The brief", "text": "La Sportiva's brand anthem, built around their For Your Mountain spirit." },
+        { "label": "What I did", "text": "Wrote an original anthem to match the drive and altitude of the brand." },
+        { "label": "The result", "text": "A signature musical identity for La Sportiva." }
+      ]
+    },
+    {
+      "title": "Go There — Elan Hagens",
+      "client": "Danner",
+      "video": "https://www.youtube.com/embed/4G-z-2sFo3M",
+      "blocks": [
+        { "label": "The brief", "text": "A Danner film following mycologist Elan Hagens into the old-growth forests of the Pacific Northwest." },
+        { "label": "What I did", "text": "Composed an original score attuned to the forest floor: patient, textured, and alive." },
+        { "label": "The result", "text": "An original score for Danner's Go There series." }
+      ]
+    },
+    {
+      "title": "Crossing Tasmania",
+      "client": "Documentary",
+      "video": "https://www.youtube.com/embed/eqI-hKkUoKw",
+      "blocks": [
+        { "label": "The brief", "text": "An expedition film following MTB rider Payson McElveen across Tasmania, ridden with a philosophy unbound by the racing clock." },
+        { "label": "What I did", "text": "Scored the journey to picture, from the quiet stretches to the high points." },
+        { "label": "The result", "text": "A documentary score that carried the crossing." }
       ]
     },
     {
@@ -58,33 +78,13 @@
       ]
     },
     {
-      "title": "Crossing Tasmania",
-      "client": "Documentary",
-      "video": "https://www.youtube.com/embed/eqI-hKkUoKw",
-      "blocks": [
-        { "label": "The brief", "text": "Original score for the adventure documentary Crossing Tasmania." },
-        { "label": "What I did", "text": "Scored the journey to picture, from the quiet moments to the peaks." },
-        { "label": "The result", "text": "A documentary score that carried the expedition." }
-      ]
-    },
-    {
-      "title": "Go There Vol. III — Elan Hagens",
-      "client": "Go There series",
-      "video": "https://www.youtube.com/embed/4G-z-2sFo3M",
-      "blocks": [
-        { "label": "The brief", "text": "Film score for the Go There series, featuring Elan Hagens." },
-        { "label": "What I did", "text": "Scored the film to its sense of place and motion." },
-        { "label": "The result", "text": "An original score for the Go There series." }
-      ]
-    },
-    {
       "title": "Define Your Future",
-      "client": "Commercial",
+      "client": "Channel",
       "video": "https://www.youtube.com/embed/eODWunbgVT4",
       "blocks": [
-        { "label": "The brief", "text": "Original music for the Define Your Future commercial." },
-        { "label": "What I did", "text": "Wrote a score built to land the message in a short runtime." },
-        { "label": "The result", "text": "A commercial score tuned to the spot." }
+        { "label": "The brief", "text": "A brand film for Channel (Bayer): \"Your fields. Your rules.\", built around its seedsmen and plant breeders." },
+        { "label": "What I did", "text": "Scored the spot to land its message with momentum in a short runtime." },
+        { "label": "The result", "text": "A commercial score for a national agriculture brand." }
       ]
     }
   ]

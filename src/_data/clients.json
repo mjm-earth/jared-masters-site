@@ -1,10 +1,10 @@
 {
   "items": [
     { "name": "The North Face", "logo": "/assets/images/logos/thenorthface.svg" },
+    { "name": "Patagonia", "logo": "/assets/images/logos/patagonia.svg" },
     { "name": "Red Bull", "logo": "/assets/images/logos/redbull.svg" },
     { "name": "Ford", "logo": "/assets/images/logos/ford.svg" },
     { "name": "Subaru", "logo": "/assets/images/logos/subaru.svg" },
-    { "name": "Patagonia", "logo": "" },
     { "name": "Jack Wolfskin", "logo": "" },
     { "name": "Danner", "logo": "" },
     { "name": "La Sportiva", "logo": "" },
