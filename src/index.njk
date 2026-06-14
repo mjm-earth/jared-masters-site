@@ -59,7 +59,7 @@ layout: base.njk
       <p class="hero__subhead reveal">{{ site.subhead }}</p>
       <div class="hero__actions reveal">
         <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>
-        <a class="btn btn--ghost" href="#reel">{{ site.reelLabel or "Watch reel" }}</a>
+        <a class="btn btn--ghost" href="#work">{{ site.reelLabel or "See the work" }}</a>
       </div>
       {% if site.awards.length %}
       <ul class="laurels reveal">
@@ -78,7 +78,7 @@ layout: base.njk
 
   <!-- TRUSTED BY (all-text clients) -->
   <section id="clients" class="trusted reveal">
-    <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
+    <p class="trusted__label">Scored films &amp; campaigns for</p>
     <ul class="clients clients--logos">
       {% for c in clients.items %}{% if c.logo %}
       <li class="client"><img class="client__logo" src="{{ c.logo | url }}" alt="{{ c.name }}" loading="lazy"></li>
