@@ -48,26 +48,35 @@
     });
   });
 
-  /* ---------- 2b) Testimonials carousel ---------- */
+  /* ---------- 2b) Carousels (testimonials + case studies), with dots ---------- */
   [].slice.call(document.querySelectorAll("[data-carousel]")).forEach(function (car) {
     var track = car.querySelector("[data-carousel-track]");
+    if (!track) return;
     var prev = car.querySelector(".carousel__nav--prev");
     var next = car.querySelector(".carousel__nav--next");
-    if (!track) return;
+    var group = car.querySelector(".carousel__nav-group");
+    var slides = [].slice.call(track.children);
+    var dots = [].slice.call(car.querySelectorAll(".carousel__dot"));
+    function stride() { return slides.length > 1 ? (slides[1].offsetLeft - slides[0].offsetLeft) : track.clientWidth; }
     function step() {
       var item = track.querySelector(".carousel__item");
       return item ? item.getBoundingClientRect().width + 21 : track.clientWidth * 0.9;
     }
     if (prev) prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
     if (next) next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
-    var group = car.querySelector(".carousel__nav-group");
-    function syncNav() {
-      if (!group) return;
-      var overflowing = track.scrollWidth > track.clientWidth + 2;
-      group.style.visibility = overflowing ? "" : "hidden";
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () { track.scrollTo({ left: slides[i].offsetLeft, behavior: "smooth" }); });
+    });
+    function sync() {
+      if (group) group.style.visibility = (track.scrollWidth > track.clientWidth + 2) ? "" : "hidden";
+      if (dots.length) {
+        var idx = Math.max(0, Math.min(dots.length - 1, Math.round(track.scrollLeft / stride())));
+        dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+      }
     }
-    syncNav();
-    window.addEventListener("resize", syncNav);
+    sync();
+    track.addEventListener("scroll", function () { window.requestAnimationFrame(sync); });
+    window.addEventListener("resize", sync);
   });
 
   /* ---------- 2c) Show more work ---------- */

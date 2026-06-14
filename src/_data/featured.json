@@ -3,9 +3,12 @@
     {
       "title": "The North Face Presents: Earthside",
       "client": "The North Face",
-      "blurb": "Original score for The North Face's Earthside film.",
       "video": "https://www.youtube.com/embed/6zl4yU-I8tI",
-      "highlight": true
+      "blocks": [
+        { "label": "The brief", "text": "Earthside follows four North Face athletes chasing first ski and climb descents on Baffin Island, and honors the late Hilaree Nelson." },
+        { "label": "What I did", "text": "Composed the original score, carrying the film from awe and adventure through to remembrance." },
+        { "label": "The result", "text": "The original score for one of The North Face's most personal films." }
+      ]
     },
     {
       "title": "Ford Bronco × Filson",

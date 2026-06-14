@@ -136,27 +136,10 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { name: title, label: "Title", widget: string }
-              - { name: icon, label: "Icon", widget: select, required: false, options: ["score", "mix", "production", "songwriting"] }
+              - { name: icon, label: "Icon", widget: select, required: false, options: ["score", "mix", "production", "songwriting", "license"] }
               - { name: minimized, label: "Show as a small secondary card?", widget: boolean, default: false, required: false }
               - { name: desc, label: "Description", widget: text }
 
-  # ---- 6. How it works ----
-  - name: process
-    label: "How it works"
-    files:
-      - name: process
-        label: "Process steps"
-        file: "src/_data/process.json"
-        fields:
-          - name: items
-            label: "Steps"
-            widget: list
-            label_singular: "Step"
-            summary: "{{fields.title}}"
-            fields:
-              - { name: step, label: "Number (e.g. 01)", widget: string }
-              - { name: title, label: "Title", widget: string }
-              - { name: desc, label: "Description", widget: text }
 
   # ---- 7. FAQ ----
   - name: faq

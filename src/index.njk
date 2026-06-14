@@ -27,6 +27,8 @@ layout: base.njk
   <path d="M16.5 3.5l4 4L8 20l-4.5 1 1-4.5z"/><path d="M14 6l4 4"/>
 {%- elif name == "mix" -%}
   <path d="M5 21v-7M5 10V3M12 21v-9M12 8V3M19 21v-5M19 12V3"/><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="10" r="1.5"/><circle cx="19" cy="14" r="1.5"/>
+{%- elif name == "license" -%}
+  <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2A2 2 0 0 1 2.8 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l7.4 7.4a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>
 {%- else -%}
   <circle cx="12" cy="12" r="9"/>
 {%- endif -%}
@@ -91,26 +93,6 @@ layout: base.njk
     </ul>
   </section>
 
-  <!-- FEATURED REEL -->
-  {% set reel = featured.items[0] %}
-  {% if reel %}
-  {% set rv = reel.video | videoMeta %}
-  <section id="reel" class="reel">
-    <div class="reel__head reveal">
-      <p class="eyebrow">Featured score</p>
-      <h2>{{ reel.title }}</h2>
-      {% if reel.client %}<p class="reel__client">{{ reel.client }}</p>{% endif %}
-    </div>
-    <div class="reel__frame facade reveal" role="button" tabindex="0"
-         data-src="{{ rv.play }}" data-title="{{ reel.title }}{% if reel.client %} — {{ reel.client }}{% endif %}"
-         aria-label="Play {{ reel.title }}">
-      {% if rv.poster %}<img class="facade__poster" src="{{ rv.poster }}" alt="{{ reel.title }}" loading="lazy">{% endif %}
-      <span class="facade__play" aria-hidden="true"></span>
-      <span class="facade__hint">Play with sound</span>
-    </div>
-  </section>
-  {% endif %}
-
   <!-- SELECTED WORK (case-study slideshow) -->
   <section id="work" class="section">
     <div class="carousel reveal" data-carousel>
@@ -125,7 +107,7 @@ layout: base.njk
         </div>
       </div>
       <ul class="carousel__track" data-carousel-track>
-        {% for item in featured.items %}{% if not loop.first %}
+        {% for item in featured.items %}
         {% set iv = item.video | videoMeta %}
         <li class="carousel__item caseslide">
           <div class="case__grid">
@@ -152,8 +134,11 @@ layout: base.njk
             </div>
           </div>
         </li>
-        {% endif %}{% endfor %}
+        {% endfor %}
       </ul>
+      <div class="carousel__dots" data-carousel-dots>
+        {% for item in featured.items %}<button class="carousel__dot" type="button" aria-label="Go to {{ item.title }}"></button>{% endfor %}
+      </div>
     </div>
   </section>
 
@@ -177,23 +162,6 @@ layout: base.njk
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="process" class="section">
-    <div class="section__head reveal">
-      <p class="eyebrow">How it works</p>
-      <h2>Simple, from first call to final mix.</h2>
-    </div>
-    <ol class="process">
-      {% for p in process.items %}
-      <li class="process__step reveal" style="--i: {{ loop.index0 }}">
-        <span class="process__num">{{ p.step }}</span>
-        <h3 class="process__title">{{ p.title }}</h3>
-        <p class="process__desc">{{ p.desc }}</p>
-      </li>
-      {% endfor %}
-    </ol>
-  </section>
-
   <!-- ABOUT (+ also a musician) -->
   {% if site.portraitImage %}
   <section id="about" class="about section">
@@ -206,15 +174,13 @@ layout: base.njk
         <h2>Your film deserves its own music.</h2>
         <p>{{ site.bio }}</p>
         {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
-        <div class="about__music">
-          <p class="about__music-label">I'm also a recording artist.</p>
-          {% if site.vinylBlurb %}<p class="about__music-blurb">{{ site.vinylBlurb }}</p>{% endif %}
-          <div class="about__links">
-            {% if site.vinylPreorderUrl %}<a class="btn btn--ghost btn--sm" href="{{ site.vinylPreorderUrl }}">Vinyl</a>{% endif %}
-            {% if site.spotify %}<a class="btn btn--ghost btn--sm" href="{{ site.spotify }}">Spotify</a>{% endif %}
-            {% if site.appleMusic %}<a class="btn btn--ghost btn--sm" href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
-          </div>
-        </div>
+        <p class="about__secondary">Outside of film, I'm also a recording artist.{% if site.vinylBlurb %} {{ site.vinylBlurb }}{% endif %}
+          <span class="about__listen">
+            {% if site.vinylPreorderUrl %}<a href="{{ site.vinylPreorderUrl }}">Vinyl</a>{% endif %}
+            {% if site.spotify %}<a href="{{ site.spotify }}">Spotify</a>{% endif %}
+            {% if site.appleMusic %}<a href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
+          </span>
+        </p>
         {% endif %}
         {% if site.availability %}<p class="about__avail">{{ site.availability }}</p>{% endif %}
         <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>

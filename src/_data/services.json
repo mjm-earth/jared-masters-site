@@ -1,7 +1,8 @@
 {
   "items": [
     { "title": "Original Score", "icon": "score", "desc": "Music that gives your film emotional gravity, scored to picture." },
-    { "title": "Mix & Master", "icon": "mix", "desc": "A finished, release-ready sound that holds up next to anything." },
-    { "title": "Production & Songwriting", "icon": "production", "desc": "Whole records built from scratch, from first demo to final master." }
+    { "title": "Songs & Anthems", "icon": "songwriting", "desc": "An original song or brand anthem that becomes the voice of your campaign." },
+    { "title": "Additional Music, Production & Mix", "icon": "mix", "desc": "Real instruments, production, and a finished mix to elevate a temp or existing score." },
+    { "title": "Licensing", "icon": "license", "desc": "License ready-made tracks from my catalog when you need the right song, fast." }
   ]
 }
