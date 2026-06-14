@@ -1,8 +1,8 @@
 {
   "items": [
-    { "title": "Original Score", "desc": "Custom music written to your picture, built to hit the emotional beats your film needs." },
-    { "title": "Music Production", "desc": "I take your songs from rough demo to finished, release-ready record." },
-    { "title": "Songwriting", "desc": "When you need the song itself: melodies and arrangements across Americana, rock, reggae, and EDM." },
-    { "title": "Mix & Master", "desc": "The polish that makes your record sit right next to everything else on the playlist." }
+    { "title": "Original Score", "icon": "score", "desc": "Custom music written to your picture, built to hit the emotional beats your film needs." },
+    { "title": "Mix & Master", "icon": "mix", "desc": "The polish that makes your record sit right next to everything else on the playlist." },
+    { "title": "Music Production", "icon": "production", "desc": "I take your songs from rough demo to finished, release-ready record." },
+    { "title": "Songwriting", "icon": "songwriting", "desc": "When you need the song itself: melodies and arrangements across Americana, rock, reggae, and EDM." }
   ]
 }

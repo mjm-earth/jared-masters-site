@@ -1,8 +1,8 @@
 {
   "items": [
     { "name": "The North Face", "logo": "" },
-    { "name": "Patagonia", "logo": "/assets/images/from-old-site/Patagonia-Logo-1975.png" },
     { "name": "Ford", "logo": "" },
+    { "name": "Patagonia", "logo": "" },
     { "name": "Subaru", "logo": "" },
     { "name": "Athletic Brewing", "logo": "" },
     { "name": "La Sportiva", "logo": "" },

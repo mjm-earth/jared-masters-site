@@ -1,19 +1,22 @@
 {
   "items": [
     {
-      "quote": "My collaboration with Jared Masters has been incredibly fruitful. I've known him for over a decade and over the past couple of years we have worked on some very exciting music together. I'm very impressed by his full range of skills. He can do it all. From great songwriting to tracking the full spectrum of instruments as well as mixing and re-remixing. He's prolific at a wide range of styles; Americana, reggae, rock, EDM, you name it! Very glad our paths have crossed.",
-      "name": "Nick Hexum",
-      "role": "311"
+      "quote": "An incredible creative partner. He translated our \"can it sound like this?\" into something that really sounded like this. I would absolutely recommend Jared for any project.",
+      "name": "Kyle von Hoetzendorff",
+      "role": "Video Editor / Copywriter, LUCKY DAY",
+      "image": ""
     },
     {
-      "quote": "We had the pleasure of working with Jared on a long form branded documentary. He brought a ton to the table and was an incredible creative partner, bringing both an expertise in creation and composition while also being able to assimilate our feedback, i.e. translating our \"can it sound like this\" to something that really sounded like this. Would absolutely recommend Jared for any project.",
-      "name": "Kyle von Hoetzendorff",
-      "role": "Video Editor / Copywriter, LUCKY DAY"
+      "quote": "I'm very impressed by his full range of skills. He can do it all, from great songwriting to tracking the full spectrum of instruments to mixing. He's prolific across Americana, reggae, rock, EDM, you name it.",
+      "name": "Nick Hexum",
+      "role": "311",
+      "image": ""
     },
     {
       "quote": "Jared is a tremendous visionary. His songwriting and arrangement capabilities are top notch. He's on his way to being unstoppable as a producer and songwriter.",
       "name": "Thomas Jack",
-      "role": "Producer / DJ"
+      "role": "Producer / DJ",
+      "image": ""
     }
   ]
 }

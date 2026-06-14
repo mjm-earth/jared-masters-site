@@ -1,92 +1,128 @@
 ---
 layout: base.njk
 ---
+{# ---- Laurel branch (mirrored on the right via CSS) ---- #}
+{% set laurelBranch %}
+<svg class="laurel__svg" viewBox="0 0 60 120" aria-hidden="true" focusable="false">
+  <path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M46 114 C 26 96 18 62 30 10"/>
+  <g fill="currentColor">
+    <path d="M41 104c-7-1-12 3-14 9 7 1 12-3 14-9z"/>
+    <path d="M36 86c-7-2-13 1-16 6 7 2 13-1 16-6z"/>
+    <path d="M33 66c-7-2-13 0-16 5 7 2 13 0 16-5z"/>
+    <path d="M33 46c-6-3-12-2-16 2 6 3 12 2 16-2z"/>
+    <path d="M35 28c-6-4-12-3-16 0 6 4 12 4 16 0z"/>
+    <path d="M40 14c-5-4-11-4-15-2 5 4 11 5 15 2z"/>
+  </g>
+</svg>
+{% endset %}
+
+{# ---- Service icons ---- #}
+{% macro svcIcon(name) %}
+<svg class="service__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+{%- if name == "score" -%}
+  <circle cx="6" cy="18" r="2.4"/><circle cx="17" cy="15.6" r="2.4"/><path d="M8.4 18V6l11-2v11.6"/><path d="M8.4 8.4l11-2"/>
+{%- elif name == "production" -%}
+  <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/><path d="M8.5 21h7"/>
+{%- elif name == "songwriting" -%}
+  <path d="M16.5 3.5l4 4L8 20l-4.5 1 1-4.5z"/><path d="M14 6l4 4"/>
+{%- elif name == "mix" -%}
+  <path d="M5 21v-7M5 10V3M12 21v-9M12 8V3M19 21v-5M19 12V3"/><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="10" r="1.5"/><circle cx="19" cy="14" r="1.5"/>
+{%- else -%}
+  <circle cx="12" cy="12" r="9"/>
+{%- endif -%}
+</svg>
+{% endmacro %}
+
 <header class="nav">
   <a class="nav__brand" href="#top">{{ site.shortName }}</a>
   <nav class="nav__links">
     <a href="#reel">Reel</a>
-    <a href="#scores">Scores</a>
+    <a href="#work">Work</a>
     <a href="#services">Services</a>
-    <a href="#listen">Listen</a>
+    <a href="#about">About</a>
     <a href="#connect" class="nav__cta">{{ site.ctaLabel }}</a>
   </nav>
 </header>
 
 <main id="top">
 
-  <!-- HERO -->
-  <section class="hero" style="--hero-image: url('{{ site.heroImage | url }}')">
+  <!-- HERO (video only; fallback still is a frame from the video) -->
+  {% set hv = site.heroVideo | videoMeta %}
+  {% set heroPoster = hv.poster if hv else "" %}
+  <section class="hero"{% if heroPoster %} style="--hero-image: url('{{ heroPoster }}')"{% endif %}>
+    {% if site.heroVideo %}<div class="hero__bg" data-video="{{ site.heroVideo | bgVideo }}"></div>{% endif %}
+    <div class="hero__veil"></div>
     <div class="hero__inner">
-      <p class="eyebrow">{{ site.role }}</p>
-      <h1 class="hero__name">{{ site.name }}</h1>
-      <p class="hero__tagline">{{ site.tagline }}</p>
-      <p class="hero__subhead">{{ site.subhead }}</p>
-      <div class="hero__actions">
+      <p class="eyebrow reveal">{{ site.role }}</p>
+      <p class="hero__name reveal">{{ site.name }}</p>
+      <h1 class="hero__tagline reveal">{{ site.tagline }}</h1>
+      <p class="hero__subhead reveal">{{ site.subhead }}</p>
+      <div class="hero__actions reveal">
         <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>
-        <a class="btn btn--ghost" href="#reel">{{ site.reelLabel or "Watch the reel" }}</a>
+        <a class="btn btn--ghost" href="#reel">{{ site.reelLabel or "Watch reel" }}</a>
       </div>
       {% if site.awards.length %}
-      <ul class="hero__awards">
-        {% for a in site.awards %}<li>{{ a }}</li>{% endfor %}
+      <ul class="laurels reveal">
+        {% for a in site.awards %}
+        <li class="laurel">
+          <span class="laurel__leaf laurel__leaf--l">{{ laurelBranch | safe }}</span>
+          <span class="laurel__text"><em>Official Selection</em>{{ a }}</span>
+          <span class="laurel__leaf laurel__leaf--r">{{ laurelBranch | safe }}</span>
+        </li>
+        {% endfor %}
       </ul>
       {% endif %}
     </div>
     <a class="hero__scroll" href="#reel" aria-label="Scroll to reel">▾</a>
   </section>
 
-  <!-- FEATURED REEL (first featured item) -->
+  <!-- FEATURED REEL -->
   {% set reel = featured.items[0] %}
   {% if reel %}
+  {% set rv = reel.video | videoMeta %}
   <section id="reel" class="reel">
-    <div class="reel__head">
+    <div class="reel__head reveal">
       <p class="eyebrow">Featured score</p>
-      <h2 class="reel__title">{{ reel.title }}</h2>
+      <h2>{{ reel.title }}</h2>
       {% if reel.client %}<p class="reel__client">{{ reel.client }}</p>{% endif %}
     </div>
-    <div class="reel__frame">
-      <iframe
-        src="{{ reel.video | embedUrl }}"
-        title="{{ reel.title }}{% if reel.client %} — {{ reel.client }}{% endif %}"
-        loading="lazy" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+    <div class="reel__frame facade reveal" role="button" tabindex="0"
+         data-src="{{ rv.play }}" data-title="{{ reel.title }}{% if reel.client %} — {{ reel.client }}{% endif %}"
+         aria-label="Play {{ reel.title }}">
+      {% if rv.poster %}<img class="facade__poster" src="{{ rv.poster }}" alt="{{ reel.title }}" loading="lazy">{% endif %}
+      <span class="facade__play" aria-hidden="true"></span>
+      <span class="facade__hint">Play with sound</span>
     </div>
   </section>
   {% endif %}
 
-  <!-- TRUSTED BY -->
-  <section id="clients" class="trusted">
-    <p class="trusted__label">Trusted by</p>
+  <!-- TRUSTED BY (all-text clients) -->
+  <section id="clients" class="trusted reveal">
+    <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
     <ul class="clients">
       {% for c in clients.items %}
-      <li class="client">
-        {% if c.logo %}
-          <img src="{{ c.logo | url }}" alt="{{ c.name }} logo" loading="lazy">
-        {% else %}
-          <span class="client__name">{{ c.name }}</span>
-        {% endif %}
-      </li>
+      <li class="client"><span class="client__name">{{ c.name }}</span></li>
       {% endfor %}
     </ul>
   </section>
 
-  <!-- SELECTED SCORES (remaining featured work) -->
-  <section id="scores" class="section">
-    <div class="section__head">
-      <h2>Selected scores &amp; films</h2>
-      <p class="section__sub">Hit play. This is what a custom score does for a film.</p>
+  <!-- SELECTED WORK -->
+  <section id="work" class="section">
+    <div class="section__head reveal">
+      <p class="eyebrow">Selected work</p>
+      <h2>Press play</h2>
+      <p class="section__sub">Every piece here is an original score, composed to picture.</p>
     </div>
     <div class="work-grid">
       {% for item in featured.items %}
       {% if not loop.first %}
-      <figure class="work">
-        <div class="work__video">
-          <iframe
-            src="{{ item.video | embedUrl }}"
-            title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
-            loading="lazy" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+      {% set iv = item.video | videoMeta %}
+      <figure class="work reveal" style="--i: {{ loop.index0 }}">
+        <div class="work__video facade" role="button" tabindex="0"
+             data-src="{{ iv.play }}" data-title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
+             aria-label="Play {{ item.title }}">
+          {% if iv.poster %}<img class="facade__poster" src="{{ iv.poster }}" alt="{{ item.title }}" loading="lazy">{% endif %}
+          <span class="facade__play" aria-hidden="true"></span>
         </div>
         <figcaption class="work__caption">
           <span class="work__title">{{ item.title }}</span>
@@ -100,14 +136,15 @@ layout: base.njk
 
   <!-- SERVICES -->
   <section id="services" class="section section--dark">
-    <div class="section__head">
+    <div class="section__head reveal">
+      <p class="eyebrow">Services</p>
       <h2>How I can help</h2>
-      <p class="section__sub">Whether you're cutting a film, launching a campaign, or finishing a record, here's where I come in.</p>
+      <p class="section__sub">Whether you're cutting an adventure film, launching an outdoor campaign, or finishing a record, here's where I come in.</p>
     </div>
     <div class="services">
       {% for s in services.items %}
-      <div class="service">
-        <span class="service__num">0{{ loop.index }}</span>
+      <div class="service reveal">
+        {{ svcIcon(s.icon) }}
         <h3 class="service__title">{{ s.title }}</h3>
         <p class="service__desc">{{ s.desc }}</p>
       </div>
@@ -115,57 +152,84 @@ layout: base.njk
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
-  <section id="words" class="section">
-    <div class="section__head">
-      <h2>What it's like to work with me</h2>
-      <p class="section__sub">Directors, artists, and producers on the collaboration.</p>
-    </div>
-    <div class="quotes">
-      {% for t in testimonials.items %}
-      <blockquote class="quote">
-        <p class="quote__text">{{ t.quote }}</p>
-        <footer class="quote__by">
-          <span class="quote__name">{{ t.name }}</span>
-          {% if t.role %}<span class="quote__role">{{ t.role }}</span>{% endif %}
-        </footer>
-      </blockquote>
-      {% endfor %}
-    </div>
-  </section>
-
-  <!-- LISTEN / MUSIC -->
-  {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
-  <section id="listen" class="section section--dark section--tight">
-    <div class="section__head">
-      <h2>Listen</h2>
-      <p class="section__sub">{{ site.vinylBlurb or "Original music and releases." }}</p>
-    </div>
-    <div class="hero__actions">
-      {% if site.vinylPreorderUrl %}<a class="btn btn--primary" href="{{ site.vinylPreorderUrl }}">Preorder the vinyl</a>{% endif %}
-      {% if site.spotify %}<a class="btn btn--ghost" href="{{ site.spotify }}">Spotify</a>{% endif %}
-      {% if site.appleMusic %}<a class="btn btn--ghost" href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
+  <!-- ABOUT (+ also a musician) -->
+  {% if site.portraitImage %}
+  <section id="about" class="about section">
+    <div class="about__grid">
+      <div class="about__photo reveal">
+        <img src="{{ site.portraitImage | url }}" alt="{{ site.name }}" loading="lazy">
+      </div>
+      <div class="about__text reveal">
+        <p class="eyebrow">About</p>
+        <h2>One ear, first note to final mix.</h2>
+        <p>{{ site.bio }}</p>
+        {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
+        <div class="about__music">
+          <p class="about__music-label">He's also a recording artist.</p>
+          {% if site.vinylBlurb %}<p class="about__music-blurb">{{ site.vinylBlurb }}</p>{% endif %}
+          <div class="about__links">
+            {% if site.vinylPreorderUrl %}<a class="btn btn--ghost btn--sm" href="{{ site.vinylPreorderUrl }}">Vinyl</a>{% endif %}
+            {% if site.spotify %}<a class="btn btn--ghost btn--sm" href="{{ site.spotify }}">Spotify</a>{% endif %}
+            {% if site.appleMusic %}<a class="btn btn--ghost btn--sm" href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
+          </div>
+        </div>
+        {% endif %}
+        {% if site.availability %}<p class="about__avail">{{ site.availability }}</p>{% endif %}
+        <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>
+      </div>
     </div>
   </section>
   {% endif %}
 
+  <!-- TESTIMONIALS (carousel) -->
+  <section id="words" class="section">
+    <div class="carousel reveal" data-carousel>
+      <div class="section__head section__head--row">
+        <div>
+          <p class="eyebrow">Kind words</p>
+          <h2>What it's like to work with me</h2>
+        </div>
+        <div class="carousel__nav-group">
+          <button class="carousel__nav carousel__nav--prev" type="button" aria-label="Previous">‹</button>
+          <button class="carousel__nav carousel__nav--next" type="button" aria-label="Next">›</button>
+        </div>
+      </div>
+      <ul class="carousel__track" data-carousel-track>
+        {% for t in testimonials.items %}
+        <li class="quote carousel__item">
+          <p class="quote__text">{{ t.quote }}</p>
+          <footer class="quote__by">
+            <span class="quote__avatar">
+              {%- if t.image %}<img src="{{ t.image | url }}" alt="{{ t.name }}" loading="lazy">{% else %}{{ t.name | initials }}{% endif -%}
+            </span>
+            <span class="quote__meta">
+              <span class="quote__name">{{ t.name }}</span>
+              {% if t.role %}<span class="quote__role">{{ t.role }}</span>{% endif %}
+            </span>
+          </footer>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
   <!-- CONNECT -->
   <section id="connect" class="section connect">
-    <div class="section__head">
-      <h2>Scoring something? Let's talk.</h2>
-      <p class="section__sub">Tell me about your film, brand, or record. I read every message and I'll get back to you fast.</p>
+    <div class="section__head reveal">
+      {% if site.availability %}<p class="eyebrow">{{ site.availability }}</p>{% endif %}
+      <h2>Start a project</h2>
+      <p class="section__sub">Tell me about your film, brand, or record. I read every message and reply personally.</p>
     </div>
-    <form class="contact" id="contact-form" action="mailto:{{ site.email }}" method="POST" enctype="text/plain">
+    <form class="contact reveal" id="contact-form" action="mailto:{{ site.email }}" method="POST" enctype="text/plain">
       <div class="contact__row">
         <label>Name<input type="text" name="name" id="cf-name" required></label>
         <label>Your email<input type="email" name="email" id="cf-email" required></label>
       </div>
-      <label>Project<input type="text" name="project" id="cf-project" placeholder="Film score, brand spot, record…"></label>
+      <label>Project<input type="text" name="project" id="cf-project" placeholder="Adventure film, brand spot, record…"></label>
       <label>Message<textarea name="message" id="cf-message" rows="5" required></textarea></label>
-      <button class="btn btn--primary" type="submit">Open email to send</button>
+      <button class="btn btn--primary" type="submit">Submit</button>
     </form>
     <script>
-      // Opens the visitor's email app with a message pre-addressed to Jared.
       (function () {
         var form = document.getElementById('contact-form');
         if (!form) return;
@@ -180,15 +244,31 @@ layout: base.njk
         });
       })();
     </script>
-    <div class="contact__direct">
-      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-      <a href="tel:{{ site.phoneHref }}">{{ site.phone }}</a>
-      {% if site.instagram %}<a href="{{ site.instagram }}">Instagram</a>{% endif %}
+    <div class="contact__direct reveal">
+      <a href="mailto:{{ site.email }}">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        <span>{{ site.email }}</span>
+      </a>
+      <a href="tel:{{ site.phoneHref }}">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11 11 0 0 0 3.5.56 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11 11 0 0 0 .56 3.5 1 1 0 0 1-.24 1z"/></svg>
+        <span>{{ site.phone }}</span>
+      </a>
+      {% if site.instagram %}<a href="{{ site.instagram }}">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <span>Instagram</span>
+      </a>{% endif %}
     </div>
   </section>
 
 </main>
 
 <footer class="footer">
-  <p>&copy; {% year %} {{ site.name }}. All rights reserved.</p>
+  <p class="footer__bio">{{ site.bio }}</p>
+  <div class="footer__links">
+    <a href="mailto:{{ site.email }}">Email</a>
+    {% if site.instagram %}<a href="{{ site.instagram }}">Instagram</a>{% endif %}
+    {% if site.spotify %}<a href="{{ site.spotify }}">Spotify</a>{% endif %}
+    {% if site.appleMusic %}<a href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
+  </div>
+  <p class="footer__legal">&copy; {% year %} {{ site.name }}. All rights reserved.</p>
 </footer>

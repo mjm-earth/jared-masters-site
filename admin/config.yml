@@ -28,9 +28,12 @@ collections:
           - { name: name, label: "Full name", widget: string }
           - { name: shortName, label: "Short name (nav)", widget: string }
           - { name: role, label: "Role line (e.g. Composer · Producer · Mixer)", widget: string }
-          - { name: tagline, label: "Headline / pitch", widget: text, hint: "The one big sentence at the top of the page." }
+          - { name: tagline, label: "Headline / pitch", widget: text, hint: "The big sentence at the top of the page." }
           - { name: subhead, label: "Sub-headline", widget: text }
+          - { name: bio, label: "About / bio paragraph", widget: text }
+          - { name: availability, label: "Availability line", widget: string, required: false, hint: "e.g. Available for a limited number of projects." }
           - { name: ctaLabel, label: "Button text", widget: string }
+          - { name: reelLabel, label: "Reel button text", widget: string, required: false }
           - { name: metaDescription, label: "Search/AI description (1–2 sentences)", widget: text }
           - { name: email, label: "Email", widget: string }
           - { name: phone, label: "Phone (display)", widget: string }
@@ -40,9 +43,11 @@ collections:
           - { name: appleMusic, label: "Apple Music URL", widget: string, required: false }
           - { name: youtube, label: "YouTube URL", widget: string, required: false }
           - { name: vinylPreorderUrl, label: "Vinyl preorder URL", widget: string, required: false }
-          - { name: formspreeEndpoint, label: "Formspree form endpoint", widget: string }
-          - { name: heroImage, label: "Hero background image", widget: image }
+          - { name: vinylBlurb, label: "Album / vinyl description", widget: text, required: false }
+          - { name: heroVideo, label: "Hero background video (YouTube/Vimeo URL)", widget: string, required: false, hint: "Plays silently behind the hero. Vimeo works best." }
+          - { name: portraitImage, label: "About photo (of Jared)", widget: image, required: false }
           - { name: ogImage, label: "Social share image", widget: image }
+          - { name: heroImage, label: "Hero fallback image (optional)", widget: image, required: false }
           - { name: url, label: "Site URL", widget: string, hint: "e.g. https://username.github.io" }
           - name: awards
             label: "Awards / selections"
@@ -104,6 +109,7 @@ collections:
               - { name: quote, label: "Quote", widget: text }
               - { name: name, label: "Name", widget: string }
               - { name: role, label: "Role / company", widget: string, required: false }
+              - { name: image, label: "Photo (optional — shows initials if empty)", widget: image, required: false }
 
   # ---- 5. Services ----
   - name: services
@@ -120,4 +126,5 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { name: title, label: "Title", widget: string }
+              - { name: icon, label: "Icon", widget: select, required: false, options: ["score", "mix", "production", "songwriting"] }
               - { name: desc, label: "Description", widget: text }
