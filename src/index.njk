@@ -4,9 +4,10 @@ layout: base.njk
 <header class="nav">
   <a class="nav__brand" href="#top">{{ site.shortName }}</a>
   <nav class="nav__links">
-    <a href="#work">Work</a>
+    <a href="#reel">Reel</a>
+    <a href="#scores">Scores</a>
     <a href="#services">Services</a>
-    <a href="#words">Praise</a>
+    <a href="#listen">Listen</a>
     <a href="#connect" class="nav__cta">{{ site.ctaLabel }}</a>
   </nav>
 </header>
@@ -22,7 +23,7 @@ layout: base.njk
       <p class="hero__subhead">{{ site.subhead }}</p>
       <div class="hero__actions">
         <a class="btn btn--primary" href="#connect">{{ site.ctaLabel }}</a>
-        <a class="btn btn--ghost" href="#work">See the work</a>
+        <a class="btn btn--ghost" href="#reel">{{ site.reelLabel or "Watch the reel" }}</a>
       </div>
       {% if site.awards.length %}
       <ul class="hero__awards">
@@ -30,40 +31,32 @@ layout: base.njk
       </ul>
       {% endif %}
     </div>
+    <a class="hero__scroll" href="#reel" aria-label="Scroll to reel">▾</a>
   </section>
 
-  <!-- FEATURED WORK -->
-  <section id="work" class="section">
-    <div class="section__head">
-      <h2>Featured work</h2>
-      <p class="section__sub">Original scores for film, documentary, and brand work.</p>
+  <!-- FEATURED REEL (first featured item) -->
+  {% set reel = featured.items[0] %}
+  {% if reel %}
+  <section id="reel" class="reel">
+    <div class="reel__head">
+      <p class="eyebrow">Featured score</p>
+      <h2 class="reel__title">{{ reel.title }}</h2>
+      {% if reel.client %}<p class="reel__client">{{ reel.client }}</p>{% endif %}
     </div>
-    <div class="work-grid">
-      {% for item in featured.items %}
-      <figure class="work {% if item.highlight %}work--lead{% endif %}">
-        <div class="work__video">
-          <iframe
-            src="{{ item.video | embedUrl }}"
-            title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
-            loading="lazy"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <figcaption class="work__caption">
-          <span class="work__title">{{ item.title }}</span>
-          {% if item.client %}<span class="work__client">{{ item.client }}</span>{% endif %}
-        </figcaption>
-      </figure>
-      {% endfor %}
+    <div class="reel__frame">
+      <iframe
+        src="{{ reel.video | embedUrl }}"
+        title="{{ reel.title }}{% if reel.client %} — {{ reel.client }}{% endif %}"
+        loading="lazy" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     </div>
   </section>
+  {% endif %}
 
-  <!-- CLIENTS -->
-  <section id="clients" class="section section--tight">
-    <div class="section__head">
-      <h2>Select clients</h2>
-    </div>
+  <!-- TRUSTED BY -->
+  <section id="clients" class="trusted">
+    <p class="trusted__label">Trusted by</p>
     <ul class="clients">
       {% for c in clients.items %}
       <li class="client">
@@ -77,15 +70,44 @@ layout: base.njk
     </ul>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section">
+  <!-- SELECTED SCORES (remaining featured work) -->
+  <section id="scores" class="section">
     <div class="section__head">
-      <h2>What I do</h2>
-      <p class="section__sub">From the first idea to the final mix.</p>
+      <h2>Selected scores &amp; films</h2>
+      <p class="section__sub">Hit play. This is what a custom score does for a film.</p>
+    </div>
+    <div class="work-grid">
+      {% for item in featured.items %}
+      {% if not loop.first %}
+      <figure class="work">
+        <div class="work__video">
+          <iframe
+            src="{{ item.video | embedUrl }}"
+            title="{{ item.title }}{% if item.client %} — {{ item.client }}{% endif %}"
+            loading="lazy" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <figcaption class="work__caption">
+          <span class="work__title">{{ item.title }}</span>
+          {% if item.client %}<span class="work__client">{{ item.client }}</span>{% endif %}
+        </figcaption>
+      </figure>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section section--dark">
+    <div class="section__head">
+      <h2>How I can help</h2>
+      <p class="section__sub">Whether you're cutting a film, launching a campaign, or finishing a record, here's where I come in.</p>
     </div>
     <div class="services">
       {% for s in services.items %}
       <div class="service">
+        <span class="service__num">0{{ loop.index }}</span>
         <h3 class="service__title">{{ s.title }}</h3>
         <p class="service__desc">{{ s.desc }}</p>
       </div>
@@ -94,9 +116,10 @@ layout: base.njk
   </section>
 
   <!-- TESTIMONIALS -->
-  <section id="words" class="section section--dark">
+  <section id="words" class="section">
     <div class="section__head">
-      <h2>In their words</h2>
+      <h2>What it's like to work with me</h2>
+      <p class="section__sub">Directors, artists, and producers on the collaboration.</p>
     </div>
     <div class="quotes">
       {% for t in testimonials.items %}
@@ -111,13 +134,14 @@ layout: base.njk
     </div>
   </section>
 
-  <!-- MUSIC / RELEASES (optional links) -->
+  <!-- LISTEN / MUSIC -->
   {% if site.vinylPreorderUrl or site.spotify or site.appleMusic %}
-  <section id="music" class="section section--tight">
+  <section id="listen" class="section section--dark section--tight">
     <div class="section__head">
-      <h2>Music</h2>
+      <h2>Listen</h2>
+      <p class="section__sub">{{ site.vinylBlurb or "Original music and releases." }}</p>
     </div>
-    <div class="hero__actions" style="justify-content:center">
+    <div class="hero__actions">
       {% if site.vinylPreorderUrl %}<a class="btn btn--primary" href="{{ site.vinylPreorderUrl }}">Preorder the vinyl</a>{% endif %}
       {% if site.spotify %}<a class="btn btn--ghost" href="{{ site.spotify }}">Spotify</a>{% endif %}
       {% if site.appleMusic %}<a class="btn btn--ghost" href="{{ site.appleMusic }}">Apple Music</a>{% endif %}
@@ -126,17 +150,17 @@ layout: base.njk
   {% endif %}
 
   <!-- CONNECT -->
-  <section id="connect" class="section section--dark">
+  <section id="connect" class="section connect">
     <div class="section__head">
-      <h2>Let's connect</h2>
-      <p class="section__sub">Tell me about your project, film, or record.</p>
+      <h2>Scoring something? Let's talk.</h2>
+      <p class="section__sub">Tell me about your film, brand, or record. I read every message and I'll get back to you fast.</p>
     </div>
     <form class="contact" id="contact-form" action="mailto:{{ site.email }}" method="POST" enctype="text/plain">
       <div class="contact__row">
         <label>Name<input type="text" name="name" id="cf-name" required></label>
         <label>Your email<input type="email" name="email" id="cf-email" required></label>
       </div>
-      <label>Project<input type="text" name="project" id="cf-project" placeholder="Film score, record, commercial…"></label>
+      <label>Project<input type="text" name="project" id="cf-project" placeholder="Film score, brand spot, record…"></label>
       <label>Message<textarea name="message" id="cf-message" rows="5" required></textarea></label>
       <button class="btn btn--primary" type="submit">Open email to send</button>
     </form>
@@ -147,19 +171,12 @@ layout: base.njk
         if (!form) return;
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          var name = (document.getElementById('cf-name').value || '').trim();
-          var email = (document.getElementById('cf-email').value || '').trim();
-          var project = (document.getElementById('cf-project').value || '').trim();
-          var message = (document.getElementById('cf-message').value || '').trim();
+          var v = function (id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+          var name = v('cf-name'), email = v('cf-email'), project = v('cf-project'), message = v('cf-message');
           var subject = 'Project inquiry from ' + (name || 'your website');
-          var body =
-            'Name: ' + name + '\n' +
-            'Email: ' + email + '\n' +
-            (project ? 'Project: ' + project + '\n' : '') +
-            '\n' + message;
-          window.location.href = 'mailto:{{ site.email }}'
-            + '?subject=' + encodeURIComponent(subject)
-            + '&body=' + encodeURIComponent(body);
+          var body = 'Name: ' + name + '\n' + 'Email: ' + email + '\n'
+            + (project ? 'Project: ' + project + '\n' : '') + '\n' + message;
+          window.location.href = 'mailto:{{ site.email }}?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
         });
       })();
     </script>

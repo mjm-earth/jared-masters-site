@@ -8,10 +8,17 @@
       "highlight": true
     },
     {
-      "title": "The Meaningless Pursuit of Snow",
-      "client": "Patagonia Films",
-      "blurb": "Score for the Patagonia Films documentary.",
-      "video": "https://www.youtube.com/embed/qnIbv6TTxOM",
+      "title": "Ford Bronco × Filson",
+      "client": "Ford",
+      "blurb": "Additional production: real instruments and an Americana influence for the all-new Ford Bronco by Filson reveal.",
+      "video": "https://www.youtube.com/embed/8Cnti-CFPsg",
+      "highlight": false
+    },
+    {
+      "title": "ANNA",
+      "client": "Film trailer",
+      "blurb": "Original music for the ANNA trailer.",
+      "video": "https://player.vimeo.com/video/1142534480",
       "highlight": false
     },
     {

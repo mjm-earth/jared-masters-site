@@ -1,8 +1,8 @@
 {
   "items": [
-    { "title": "Composing", "desc": "Original scores for film, documentary, and commercial work." },
-    { "title": "Production", "desc": "Full-spectrum instrument tracking and record production." },
-    { "title": "Songwriting", "desc": "Songs and arrangements across Americana, rock, reggae, EDM, and more." },
-    { "title": "Mixing", "desc": "Mixing and remixing that makes a record sound finished." }
+    { "title": "Original Score", "desc": "Custom music written to your picture, built to hit the emotional beats your film needs." },
+    { "title": "Music Production", "desc": "I take your songs from rough demo to finished, release-ready record." },
+    { "title": "Songwriting", "desc": "When you need the song itself: melodies and arrangements across Americana, rock, reggae, and EDM." },
+    { "title": "Mix & Master", "desc": "The polish that makes your record sit right next to everything else on the playlist." }
   ]
 }
