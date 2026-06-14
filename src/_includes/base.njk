@@ -10,8 +10,7 @@
   <meta name="author" content="{{ site.name }}">
   <meta name="theme-color" content="#0a0a0a">
   <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml">
-  {% set heroPoster = (site.heroVideo | videoMeta).poster if site.heroVideo else (site.heroImage | url) %}
-  {% if heroPoster %}<link rel="preload" as="image" href="{{ heroPoster }}">{% endif %}
+  {% if site.heroImage %}<link rel="preload" as="image" href="{{ site.heroImage | url }}">{% endif %}
 
   <!-- Open Graph / social preview -->
   <meta property="og:type" content="website">

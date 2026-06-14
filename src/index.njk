@@ -48,10 +48,8 @@ layout: base.njk
 
 <main id="top">
 
-  <!-- HERO (video only; fallback still is a frame from the video) -->
-  {% set hv = site.heroVideo | videoMeta %}
-  {% set heroPoster = hv.poster if hv else "" %}
-  <section class="hero"{% if heroPoster %} style="--hero-image: url('{{ heroPoster }}')"{% endif %}>
+  <!-- HERO (silent looping video over a high-res outdoor still that shows if the video can't load) -->
+  <section class="hero"{% if site.heroImage %} style="--hero-image: url('{{ site.heroImage | url }}')"{% endif %}>
     {% if site.heroVideo %}<div class="hero__bg" data-video="{{ site.heroVideo | bgVideo }}"></div>{% endif %}
     <div class="hero__veil"></div>
     <div class="hero__inner">
