@@ -8,7 +8,7 @@ backend:
   branch: main
   # GitHub Pages has no built-in login, so Sveltia uses a tiny free auth relay.
   # After deploying the sveltia-cms-auth Cloudflare Worker (see README), put its URL here:
-  base_url: https://YOUR-AUTH-WORKER.workers.dev
+  base_url: https://jared-masters.rsf26nfnd5.workers.dev
 
 # Where uploaded images go, and how they're referenced on the site.
 media_folder: "src/assets/images/uploads"
