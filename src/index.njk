@@ -79,12 +79,15 @@ layout: base.njk
   <!-- TRUSTED BY (all-text clients) -->
   <section id="clients" class="trusted reveal">
     <p class="trusted__label">Trusted by the outdoor &amp; adventure world</p>
-    <ul class="clients">
-      {% for c in clients.items %}
-      <li class="client">
-        {%- if c.logo %}<img class="client__logo" src="{{ c.logo | url }}" alt="{{ c.name }}" loading="lazy">{% else %}<span class="client__name">{{ c.name }}</span>{% endif -%}
-      </li>
-      {% endfor %}
+    <ul class="clients clients--logos">
+      {% for c in clients.items %}{% if c.logo %}
+      <li class="client"><img class="client__logo" src="{{ c.logo | url }}" alt="{{ c.name }}" loading="lazy"></li>
+      {% endif %}{% endfor %}
+    </ul>
+    <ul class="clients clients--text">
+      {% for c in clients.items %}{% if not c.logo %}
+      <li class="client"><span class="client__name">{{ c.name }}</span></li>
+      {% endif %}{% endfor %}
     </ul>
   </section>
 
@@ -220,6 +223,22 @@ layout: base.njk
   </section>
   {% endif %}
 
+  <!-- FAQ -->
+  <section id="faq" class="section section--dark">
+    <div class="section__head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Good to know</h2>
+    </div>
+    <div class="faq">
+      {% for f in faq.items %}
+      <details class="faq__item reveal">
+        <summary class="faq__q">{{ f.q }}</summary>
+        <p class="faq__a">{{ f.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </section>
+
   <!-- TESTIMONIALS (carousel) -->
   <section id="words" class="section">
     <div class="carousel reveal" data-carousel>
@@ -249,22 +268,6 @@ layout: base.njk
         </li>
         {% endfor %}
       </ul>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="section section--dark">
-    <div class="section__head reveal">
-      <p class="eyebrow">FAQ</p>
-      <h2>Good to know</h2>
-    </div>
-    <div class="faq">
-      {% for f in faq.items %}
-      <details class="faq__item reveal">
-        <summary class="faq__q">{{ f.q }}</summary>
-        <p class="faq__a">{{ f.a }}</p>
-      </details>
-      {% endfor %}
     </div>
   </section>
 

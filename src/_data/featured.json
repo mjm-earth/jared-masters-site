@@ -10,9 +10,7 @@
     {
       "title": "Ford Bronco × Filson",
       "client": "Ford",
-      "blurb": "Additional production: real instruments and an Americana influence for the all-new Ford Bronco by Filson reveal.",
       "video": "https://www.youtube.com/embed/8Cnti-CFPsg",
-      "highlight": false,
       "blocks": [
         { "label": "The brief", "text": "Original music for the all-new Ford Bronco by Filson reveal." },
         { "label": "What I did", "text": "Added live instruments and production to the score, with an Americana influence to match the Bronco x Filson world." },
@@ -20,53 +18,74 @@
       ]
     },
     {
-      "title": "ANNA",
-      "client": "Film trailer",
-      "blurb": "Original music for the ANNA trailer.",
-      "video": "https://player.vimeo.com/video/1142534480",
-      "highlight": false
+      "title": "Subaru & Brooklyn Bell",
+      "client": "Subaru",
+      "video": "https://player.vimeo.com/video/545656933",
+      "blocks": [
+        { "label": "The brief", "text": "Music for Subaru's brand film featuring artist Brooklyn Bell." },
+        { "label": "What I did", "text": "Scored to picture, supporting Brooklyn Bell's story without getting in its way." },
+        { "label": "The result", "text": "An original score for a Subaru brand film." }
+      ]
     },
     {
       "title": "Journey to 100",
       "client": "Athletic Brewing",
-      "blurb": "Film by Athletic Brewing.",
       "video": "https://www.youtube.com/embed/GMg5bMtixPs",
-      "highlight": false
-    },
-    {
-      "title": "Subaru & Brooklyn Bell",
-      "client": "Subaru",
-      "blurb": "Brand film featuring artist Brooklyn Bell.",
-      "video": "https://player.vimeo.com/video/545656933",
-      "highlight": false
+      "blocks": [
+        { "label": "The brief", "text": "Original score for Athletic Brewing's Journey to 100 film." },
+        { "label": "What I did", "text": "Wrote music to carry the film's emotional arc and match the brand's spirit." },
+        { "label": "The result", "text": "A score that fit Athletic Brewing's story start to finish." }
+      ]
     },
     {
       "title": "La Sportiva Brand Anthem",
       "client": "La Sportiva",
-      "blurb": "Brand anthem score.",
       "video": "https://www.youtube.com/embed/cpg0qRbFPxU",
-      "highlight": false
+      "blocks": [
+        { "label": "The brief", "text": "A brand anthem for La Sportiva." },
+        { "label": "What I did", "text": "Composed an original anthem to match the energy of the brand." },
+        { "label": "The result", "text": "A signature piece for La Sportiva's brand film." }
+      ]
+    },
+    {
+      "title": "ANNA",
+      "client": "Film trailer",
+      "video": "https://player.vimeo.com/video/1142534480",
+      "blocks": [
+        { "label": "The brief", "text": "Original music for the ANNA film trailer." },
+        { "label": "What I did", "text": "Scored the trailer to its rising tension, building a theme that tracked the cut." },
+        { "label": "The result", "text": "A trailer score that set the tone for the film." }
+      ]
     },
     {
       "title": "Crossing Tasmania",
-      "client": "",
-      "blurb": "Original score for the adventure documentary.",
+      "client": "Documentary",
       "video": "https://www.youtube.com/embed/eqI-hKkUoKw",
-      "highlight": false
-    },
-    {
-      "title": "Define Your Future",
-      "client": "",
-      "blurb": "Commercial score.",
-      "video": "https://www.youtube.com/embed/eODWunbgVT4",
-      "highlight": false
+      "blocks": [
+        { "label": "The brief", "text": "Original score for the adventure documentary Crossing Tasmania." },
+        { "label": "What I did", "text": "Scored the journey to picture, from the quiet moments to the peaks." },
+        { "label": "The result", "text": "A documentary score that carried the expedition." }
+      ]
     },
     {
       "title": "Go There Vol. III — Elan Hagens",
-      "client": "",
-      "blurb": "Film score for the Go There series.",
+      "client": "Go There series",
       "video": "https://www.youtube.com/embed/4G-z-2sFo3M",
-      "highlight": false
+      "blocks": [
+        { "label": "The brief", "text": "Film score for the Go There series, featuring Elan Hagens." },
+        { "label": "What I did", "text": "Scored the film to its sense of place and motion." },
+        { "label": "The result", "text": "An original score for the Go There series." }
+      ]
+    },
+    {
+      "title": "Define Your Future",
+      "client": "Commercial",
+      "video": "https://www.youtube.com/embed/eODWunbgVT4",
+      "blocks": [
+        { "label": "The brief", "text": "Original music for the Define Your Future commercial." },
+        { "label": "What I did", "text": "Wrote a score built to land the message in a short runtime." },
+        { "label": "The result", "text": "A commercial score tuned to the spot." }
+      ]
     }
   ]
 }

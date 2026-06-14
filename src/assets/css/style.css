@@ -187,11 +187,15 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; text-transform: up
 /* ---------- Selected clients (all text) ---------- */
 .trusted { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-soft); padding: clamp(2rem, 6vw, 3rem) var(--pad); }
 .trusted__label { text-align: center; margin: 0 0 1.5rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.66rem; color: var(--ink-dim); }
-.clients { list-style: none; margin: 0 auto; padding: 0; max-width: var(--maxw); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.7rem 0; }
+.clients { list-style: none; margin: 0 auto; padding: 0; max-width: var(--maxw); display: flex; flex-wrap: wrap; align-items: center; justify-content: center; }
 .client { display: inline-flex; align-items: center; }
-.client:not(:last-child)::after { content: ""; width: 1px; height: 0.9em; background: var(--line-strong); margin: 0 clamp(0.9rem, 3vw, 1.8rem); }
-.client__name { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.13em; font-size: clamp(0.8rem, 2.5vw, 1rem); color: var(--ink-dim); transition: color 0.25s; white-space: nowrap; }
-.client__logo { height: 24px; width: auto; opacity: 0.72; transition: opacity 0.25s; }
+/* Row 1: big brand logos */
+.clients--logos { gap: clamp(2.4rem, 7vw, 5rem); margin-bottom: 2rem; }
+.clients--logos .client__logo { height: clamp(56px, 13vw, 96px); width: auto; opacity: 0.9; transition: opacity 0.25s; }
+/* Row 2: text wordmarks with hairline separators */
+.clients--text { gap: 0.6rem 0; }
+.clients--text .client:not(:last-child)::after { content: ""; width: 1px; height: 0.85em; background: var(--line-strong); margin: 0 clamp(0.8rem, 2.6vw, 1.5rem); }
+.client__name { font-family: var(--font-head); text-transform: uppercase; letter-spacing: 0.12em; font-size: clamp(0.68rem, 2vw, 0.8rem); color: var(--ink-dim); transition: color 0.25s; white-space: nowrap; }
 @media (hover: hover) { .client__name:hover { color: var(--ink); } .client__logo:hover { opacity: 1; } }
 
 /* ---------- Selected work grid ---------- */
